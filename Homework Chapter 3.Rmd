@@ -1,0 +1,48 @@
+---
+title: "Homework Chapter 3"
+author: "Sindhuja Gundeti"
+date: "1/29/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gapminder)
+```
+
+## My first figure using Gapminder 3.4
+
+```{r gapminder 3.4}
+p <- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+p + geom_point()
+```
+
+## Figure using Gapminder data 3.13
+This is a more polished version of the Life Expectancy vs GDP.
+
+
+```{r gapminder 3.13, echo=FALSE}
+p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y=lifeExp))
+p + geom_point(alpha = 0.3) + 
+  geom_smooth(method = "gam") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(x = "GDP per Capita", y = "Life Expectancy in Years",
+       title = "Economic Growth and Life Expectancy",
+       subtitle = "Data points are country-years",
+       caption = "Source: Gapminder.")
+```
+
+Now we will create figure 3.16 
+```{r gapminder 3.16, echo=FALSE}
+p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) +
+    geom_smooth(method = "loess") +
+    scale_x_log10()
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Hello
+p + geom_point() 
